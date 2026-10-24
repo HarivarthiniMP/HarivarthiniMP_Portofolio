@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Web Developer Portfolio | Business Growth Websites</title>
+  <meta name="description" content="I help businesses establish their online presence with modern, responsive, and user-friendly websites." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e18;
+      --surface: #171b26;
+      --surface-2: #1c1f2a;
+      --surface-3: #262a35;
+      --text: #dfe2f1;
+      --muted: #bbcac6;
+      --teal: #4fdbc8;
+      --teal-2: #14b8a6;
+      --teal-3: #71f8e4;
+      --cyan: #1eb0ea;
+      --ink: #003731;
+      --border: rgba(187, 202, 198, 0.12);
+      --danger: #ffb4ab;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    h1, h2, h3, h4 {
+      font-family: Manrope, sans-serif;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+    h1 { font-size: 64px; font-weight: 800; line-height: 72px; letter-spacing: -2.24px; }
+    h2 { font-size: 40px; font-weight: 700; }
+    h3 { font-size: 20px; font-weight: 700; }
+    h4 { font-size: 16px; font-weight: 700; }
+    p { color: var(--muted); }
+
+    .wrap { max-width: 1184px; margin: 0 auto; padding: 0 24px; position: relative; }
+    section { position: relative; padding: 96px 0; overflow: hidden; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .muted { color: var(--muted); }
+    .gradient-text {
+      background: linear-gradient(90deg, var(--teal), var(--teal-3), var(--teal-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(130px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .section-inner { position: relative; z-index: 1; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .section-header { max-width: 672px; margin-bottom: 48px; }
+    .section-header h2 { margin-top: 16px; }
+    .section-header p { margin-top: 16px; font-size: 17px; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: Inter, sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .btn-primary { background: var(--teal); color: var(--ink); box-shadow: 0 0 14px rgba(79, 219, 200, 0.35); }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 0 22px rgba(79, 219, 200, 0.5); }
+    .btn-ghost { background: var(--surface-3); color: var(--text); }
+    .btn-ghost:hover { background: #2f3442; transform: translateY(-2px); }
+
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--surface-3);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: var(--surface-3);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+    .dot-pulse { position: relative; }
+    .dot-pulse::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.6;
+      animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+    @keyframes ping { 75%, 100% { transform: scale(2.2); opacity: 0; } }
+
+    .card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .card:hover { transform: translateY(-4px); border-color: rgba(79, 219, 200, 0.35); }
+
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(79, 219, 200, 0.1);
+      display: grid;
+      place-items: center;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+    .icon-box svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      background: var(--surface-3);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .check { list-style: none; display: grid; gap: 10px; }
+    .check li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); }
+    .check li::before { content: "✓"; color: var(--teal); font-weight: 700; }
+
+    .text-link {
+      color: var(--teal);
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .text-link:hover { text-decoration: underline; }
+
+    /* ---------- HERO ---------- */
+    .hero { padding: 48px 0 96px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+      align-items: center;
+    }
+    .hero-left { grid-column: 1 / span 6; }
+    .hero-right { grid-column: 7 / span 6; position: relative; }
+
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+    .hero-badges .pill { background: var(--surface-2); }
+    .hero h1 { margin-top: 24px; }
+    .hero-copy { margin-top: 24px; font-size: 18px; line-height: 30px; max-width: 576px; }
+    .hero-ctas { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px; }
+    .trust-line {
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: rgba(187, 202, 198, 0.8);
+    }
+
+    .backlight {
+      position: absolute;
+      inset: -24px;
+      border-radius: 24px;
+      background: linear-gradient(141deg, rgba(79, 219, 200, 0.15) 0%, rgba(79, 219, 200, 0) 50%, rgba(30, 176, 234, 0.1) 100%);
+      filter: blur(40px);
+      z-index: 0;
+    }
+    .hero-stack { position: relative; z-index: 1; display: grid; gap: 16px; }
+
+    .window {
+      background: var(--surface);
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .win-chrome {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(10, 14, 24, 0.6);
+      gap: 12px;
+    }
+    .win-dots { display: flex; gap: 8px; align-items: center; min-width: 0; }
+    .win-dots .d { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .win-url {
+      margin-left: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: rgba(187, 202, 198, 0.7);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .win-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--teal);
+      white-space: nowrap;
+    }
+    .win-body { padding: 16px; background: #0a0e18; }
+
+    .site-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .site-brand { display: flex; gap: 8px; align-items: center; }
+    .site-logo {
+      width: 28px; height: 28px; border-radius: 4px;
+      background: var(--teal-2); color: #00423b;
+      display: grid; place-items: center;
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px;
+    }
+    .site-name { font-family: Manrope, sans-serif; font-weight: 600; font-size: 14px; color: var(--text); }
+    .site-tag {
+      background: rgba(79, 219, 200, 0.1);
+      color: var(--teal);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .metrics { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .metric {
+      background: rgba(38, 42, 53, 0.6);
+      border-radius: 4px;
+      padding: 8px 10px 12px;
+    }
+    .metric .label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--muted); }
+    .metric .value { font-family: Manrope, sans-serif; font-weight: 700; font-size: 20px; color: var(--teal); letter-spacing: -0.2px; }
+    .metric svg { width: 100%; height: 20px; margin-top: 8px; }
+
+    .chart-row {
+      margin-top: 16px;
+      background: var(--surface-2);
+      border-radius: 4px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .chart-row .title { font-size: 12px; color: var(--text); }
+    .chart-row .status { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal-3); white-space: nowrap; }
+
+    .hero-lower { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px; }
+    .code-win .win-body { padding: 16px; }
+    .code-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 8px; }
+    .code-title .file { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .code-title .meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(79, 219, 200, 0.8); }
+    pre.code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      line-height: 19.5px;
+      white-space: pre;
+      overflow-x: auto;
+      color: var(--text);
+    }
+    .k { color: #7bd0ff; }
+    .v { color: #4ddcc6; }
+    .n { color: #71f8e4; }
+    .c { color: var(--muted); }
+
+    .term-win { background: var(--surface-3); padding: 16px; }
+    .term-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .term-top .name { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .term-lines { display: grid; gap: 4px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+    .term-foot { margin-top: 16px; padding-top: 8px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
+    .about-left h2 { margin-top: 16px; }
+    .about-left .paras { margin-top: 24px; display: grid; gap: 16px; font-size: 17px; }
+    .quote {
+      margin-top: 32px;
+      font-family: Manrope, sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1.4;
+      border-left: 2px solid var(--teal);
+      padding-left: 20px;
+    }
+    .capabilities { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .profile-card { position: relative; }
+    .profile-head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .profile-head .who { display: flex; gap: 16px; align-items: center; }
+    .focus-list { display: grid; gap: 12px; }
+    .focus-item {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 12px; border-radius: 8px; background: rgba(38, 42, 53, 0.5);
+    }
+    .focus-item .txt { display: flex; gap: 14px; align-items: center; }
+    .focus-item h4 { font-size: 15px; }
+    .focus-item p { font-size: 13px; line-height: 20px; }
+    .snippet {
+      margin-top: 24px;
+      background: #0a0e18;
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .snippet .ok { color: var(--teal); }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .skill-card .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .skill-card .tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 4px 10px; border-radius: 4px; background: var(--surface-3); color: var(--teal); }
+    .skill-card h3 { margin-top: 24px; }
+    .skill-card p { margin-top: 12px; font-size: 15px; }
+    .skill-card .chips { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 8px; }
+
+    /* ---------- PROJECTS ---------- */
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .project { display: flex; flex-direction: column; padding: 24px; }
+    .mock {
+      height: 200px;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+    .mock-bar {
+      background: rgba(10, 14, 24, 0.6);
+      padding: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .mock-body { flex: 1; padding: 14px; display: grid; gap: 10px; align-content: start; }
+    .mock-block { height: 14px; border-radius: 3px; background: rgba(223, 226, 241, 0.15); }
+    .mock-block.hi { background: rgba(79, 219, 200, 0.35); }
+    .mock-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .mock-row div { height: 44px; border-radius: 4px; background: rgba(10, 14, 24, 0.5); }
+    .mock-chart { height: 56px; border-radius: 4px; background: linear-gradient(180deg, rgba(79,219,200,0.18), rgba(79,219,200,0)); position: relative; }
+    .mock-chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .m1 { background: linear-gradient(135deg, #0f3d3a 0%, #0a0e18 60%, #103a5a 100%); }
+    .m2 { background: linear-gradient(135deg, #103a5a 0%, #0a0e18 60%, #14514a 100%); }
+    .m3 { background: linear-gradient(135deg, #1c1f2a 0%, #0a0e18 55%, #0f3d3a 100%); }
+    .project .label { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); margin-top: 24px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .project h3 { margin-top: 8px; font-size: 22px; }
+    .project .desc { margin-top: 12px; font-size: 15px; }
+    .project .features { margin-top: 20px; }
+    .project .foot { margin-top: auto; padding-top: 24px; }
+    .project .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project .links { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 12px; }
+
+    .cta-banner {
+      margin-top: 48px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .cta-banner h4 { font-size: 20px; }
+    .cta-banner p { margin-top: 8px; font-size: 15px; }
+
+    /* ---------- CERTIFICATIONS ---------- */
+    .milestones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .milestone { display: flex; flex-direction: column; padding: 24px; }
+    .milestone .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .milestone h3 { font-size: 18px; margin-top: 24px; }
+    .milestone .sub { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .milestone .foot {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      gap: 8px;
+    }
+    .milestone .foot .text-link { font-size: 12px; }
+
+    /* ---------- TIMELINE ---------- */
+    .timeline { position: relative; padding-left: 40px; margin-top: 16px; display: grid; gap: 24px; }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      bottom: 12px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--teal), rgba(79, 219, 200, 0.1));
+    }
+    .t-entry { position: relative; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .t-entry::before {
+      content: "";
+      position: absolute;
+      left: -32px;
+      top: 30px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 14px rgba(79, 219, 200, 0.6);
+    }
+    .t-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+    .t-date { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--teal); text-transform: uppercase; letter-spacing: 0.05em; }
+    .t-entry h3 { margin-top: 8px; font-size: 20px; }
+    .t-entry p { margin-top: 12px; font-size: 15px; }
+
+    /* ---------- OPEN TO WORK ---------- */
+    .highlight {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid rgba(79, 219, 200, 0.2);
+      border-radius: 16px;
+      padding: 64px;
+      overflow: hidden;
+    }
+    .highlight .glow-a { width: 384px; height: 384px; right: -120px; top: 40%; background: rgba(79, 219, 200, 0.12); }
+    .highlight .glow-b { width: 320px; height: 320px; left: -120px; top: -120px; background: rgba(30, 176, 234, 0.1); }
+    .highlight-inner { position: relative; z-index: 1; max-width: 768px; }
+    .highlight h2 { margin-top: 16px; }
+    .highlight p { margin-top: 24px; font-size: 17px; }
+    .highlight .actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px; }
+    .highlight .note { margin-top: 32px; display: flex; gap: 12px; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start; }
+    .contact-left h2 { margin-top: 16px; }
+    .contact-left > p { margin-top: 24px; font-size: 17px; }
+    .channels { margin-top: 32px; display: grid; gap: 12px; }
+    .channel {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .channel:hover { border-color: rgba(79, 219, 200, 0.35); transform: translateX(4px); }
+    .channel .meta { flex: 1; min-width: 0; }
+    .channel .meta small { display: block; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--muted); }
+    .channel .meta span { display: block; color: var(--text); font-weight: 600; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .channel .arrow { color: var(--teal); font-family: 'JetBrains Mono', monospace; }
+    .reassure {
+      margin-top: 24px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .form-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+    }
+    .form-card h3 { font-size: 22px; margin-bottom: 8px; }
+    .form-card .form-sub { font-size: 14px; margin-bottom: 28px; }
+    form { display: grid; gap: 20px; }
+    .field label {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+    .field label .req { color: var(--teal); }
+    .field input {
+      width: 100%;
+      background: #0a0e18;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: Inter, sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field input::placeholder { color: rgba(187, 202, 198, 0.4); }
+    .field input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(79, 219, 200, 0.15); }
+    .field input:invalid:not(:placeholder-shown):not(:focus) { border-color: var(--danger); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-foot { display: grid; gap: 12px; }
+    .form-foot .btn { justify-content: center; width: 100%; font-size: 15px; padding: 14px 24px; }
+    .privacy { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(187, 202, 198, 0.7); text-align: center; }
+    .status {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .status.show { display: block; }
+    .status.success { background: rgba(79, 219, 200, 0.12); color: var(--teal-3); border: 1px solid rgba(79, 219, 200, 0.3); }
+    .status.error { background: rgba(255, 180, 171, 0.1); color: var(--danger); border: 1px solid rgba(255, 180, 171, 0.3); }
+
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: rgba(187, 202, 198, 0.6);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1080px) {
+      h1 { font-size: 52px; line-height: 62px; letter-spacing: -1.6px; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .milestones { grid-template-columns: 1fr 1fr; }
+      .highlight { padding: 48px; }
+    }
+
+    @media (max-width: 960px) {
+      section { padding: 72px 0; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-left, .hero-right { grid-column: 1 / -1; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      h2 { font-size: 34px; }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { padding: 0 18px; }
+      section { padding: 56px 0; }
+      h1 { font-size: 40px; line-height: 48px; letter-spacing: -1px; }
+      h2 { font-size: 30px; }
+      .hero { padding-top: 24px; }
+      .hero-copy { font-size: 16px; line-height: 26px; }
+      .projects-grid, .milestones { grid-template-columns: 1fr; }
+      .hero-lower { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      .form-card { padding: 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .highlight { padding: 32px 24px; }
+      .cta-banner { padding: 20px; }
+      .win-url { display: none; }
+      .win-chrome { padding: 10px 12px; }
+      .win-body { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="glow" style="width:600px;height:600px;left:25%;top:-160px;background:rgba(79,219,200,0.1);"></div>
+    <div class="glow" style="width:520px;height:520px;right:-128px;top:calc(50% + 260px);background:rgba(30,176,234,0.1);"></div>
+
+    <div class="wrap">
+      <div class="hero-grid">
+
+        <!-- Left column: copy & actions -->
+        <div class="hero-left section-inner">
+          <div class="hero-badges">
+            <span class="pill"><span class="dot"></span>WEB DEVELOPER · CREATIVE PROBLEM SOLVER</span>
+            <span class="pill" style="background:#1c1f2a;font-size:13px;"><span class="dot" style="background:var(--teal-3);width:6px;height:6px;"></span>Available for freelance projects</span>
+          </div>
+
+          <h1 style="margin-top:24px;">
+            I Build Websites<br />
+            That Turn Ideas Into<br />
+            <span class="gradient-text">Business Growth</span>.
+          </h1>
+
+          <p class="hero-copy">
+            I help businesses establish their online presence with modern, responsive, and user-friendly websites designed to attract customers, build trust, and turn visitors into potential clients.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#contact">Let's Build Your Website <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#projects">Explore My Work <span aria-hidden="true">↓</span></a>
+          </div>
+
+          <div class="trust-line">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4fdbc8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            <span>Freelance Projects · Collaborations · Career Opportunities</span>
+          </div>
+        </div>
+
+        <!-- Right column: floating workspace mockups -->
+        <div class="hero-right">
+          <div class="backlight"></div>
+          <div class="hero-stack">
+
+            <!-- Window 1: business web preview -->
+            <div class="window">
+              <div class="win-chrome">
+                <div class="win-dots">
+                  <span class="d" style="background:rgba(255,180,171,0.7)"></span>
+                  <span class="d" style="background:rgba(0,180,160,0.7)"></span>
+                  <span class="d" style="background:rgba(79,219,200,0.7)"></span>
+                  <span class="win-url">https://business-growth.client.app</span>
+                </div>
+                <span class="win-tag">99.8% Perf</span>
+              </div>
+              <div class="win-body">
+                <div class="site-head">
+                  <div class="site-brand">
+                    <span class="site-logo">HP</span>
+                    <span class="site-name">NovaScale Digital</span>
+                  </div>
+                  <span class="site-tag">Conversion Optimized</span>
+                </div>
+
+                <div class="metrics">
+                  <div class="metric">
+                    <div class="label">Monthly Visitors</div>
+                    <div class="value">+184%</div>
+                  </div>
+                  <div class="metric">
+                    <div class="label">Inquiries Rate</div>
+                    <div class="value" style="color:#4ddcc6">14.6%</div>
+                  </div>
+                  <div class="metric">
+                    <div class="label">Client Trust</div>
+                    <svg viewBox="0 0 120 20" preserveAspectRatio="none" aria-hidden="true">
+                      <polyline fill="none" stroke="#4fdbc8" stroke-width="2" points="0,16 20,12 40,14 60,8 80,10 100,4 120,2"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="chart-row">
+                  <span class="title">Digital Acquisition Funnel</span>
+                  <span class="status">Target Achieved ↗</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Windows 2 & 3: code editor + terminal -->
+            <div class="hero-lower">
+              <div class="window code-win">
+                <div class="win-body" style="background:#0a0e18;">
+                  <div class="code-title">
+                    <span class="file">GrowthEngine.tsx</span>
+                    <span class="meta">React 19 · TS</span>
+                  </div>
+                  <pre class="code"><span class="k">interface</span> <span class="v">ClientSuccess</span> {
+  leads: <span class="v">number</span>;
+  retentionRate: <span class="n">98.7%</span>;
+}
+<span class="k">export const</span> <span class="v">deploySite</span> = () => <span class="v">growBusiness</span>();</pre>
+                </div>
+              </div>
+
+              <div class="window term-win">
+                <div class="term-top">
+                  <span class="name">node-runtime</span>
+                  <span class="dot"></span>
+                </div>
+                <div class="term-lines">
+                  <span style="color:var(--teal-3)">⚡ Server ready :3000</span>
+                  <span style="color:var(--text)">✔ Optimizations compiled</span>
+                  <span style="color:var(--teal)">✔ Build: 100% stable</span>
+                </div>
+                <div class="term-foot">
+                  <span style="color:var(--muted)">Vercel Edge</span>
+                  <span style="color:var(--teal);font-weight:700;">LIVE ↗</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" style="background:#0d1220;">
+    <div class="wrap section-inner">
+      <div class="about-grid">
+        <div class="about-left">
+          <span class="eyebrow">About Me</span>
+          <h2>More Than a Developer — Your Partner in Digital Growth.</h2>
+          <div class="paras">
+            <p>I'm a web developer passionate about helping businesses bring their ideas to life online. I believe a good website should do more than look attractive. It should communicate your value, build customer confidence, and make it easier for people to choose your business.</p>
+            <p>From creating a website from scratch to improving an existing one, I focus on combining clean design, reliable functionality, and a smooth user experience.</p>
+            <p>My approach is simple: understand your business, identify what your audience needs, and build a website that supports your goals.</p>
+          </div>
+          <div class="quote">“Let's turn your vision into something your customers can experience.”</div>
+          <div class="capabilities">
+            <span class="badge">Clean Code</span>
+            <span class="badge">Responsive & Mobile-First</span>
+            <span class="badge">Performance Focus</span>
+            <span class="badge">Client-Focused Results</span>
+          </div>
+        </div>
+
+        <div class="card profile-card">
+          <div class="profile-head">
+            <div class="who">
+              <span class="icon-box">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>
+              </span>
+              <div>
+                <h3>Developer Focus</h3>
+                <p class="mono" style="font-size:13px;">Design · Build · Grow</p>
+              </div>
+            </div>
+            <span class="badge">Core</span>
+          </div>
+
+          <div class="focus-list">
+            <div class="focus-item">
+              <div class="txt">
+                <span class="icon-box" style="width:32px;height:32px;border-radius:8px;">
+                  <svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+                </span>
+                <div>
+                  <h4>Thoughtful Design</h4>
+                  <p>Clear layouts and intuitive navigation.</p>
+                </div>
+              </div>
+            </div>
+            <div class="focus-item">
+              <div class="txt">
+                <span class="icon-box" style="width:32px;height:32px;border-radius:8px;">
+                  <svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg>
+                </span>
+                <div>
+                  <h4>Clean Development</h4>
+                  <p>Reliable code that is easy to maintain.</p>
+                </div>
+              </div>
+            </div>
+            <div class="focus-item">
+              <div class="txt">
+                <span class="icon-box" style="width:32px;height:32px;border-radius:8px;">
+                  <svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+                </span>
+                <div>
+                  <h4>Business Growth</h4>
+                  <p>Websites built around your goals.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="snippet">
+            <span>const growth = <span class="ok">true</span>;</span>
+            <span>v2.0.4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap section-inner">
+      <div class="section-header">
+        <span class="eyebrow">Skills</span>
+        <h2>The Skills Behind Every Website I Build.</h2>
+        <p>I use modern web technologies to create websites that are responsive, functional, and easy to use. My focus is on choosing the right tools for each project and delivering solutions that meet real business needs.</p>
+      </div>
+
+      <div class="skills-grid">
+        <article class="card skill-card">
+          <div class="top">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+            </span>
+            <span class="tag">Frontend</span>
+          </div>
+          <h3>Frontend Development</h3>
+          <p>Building responsive, interactive interfaces that look and work well across desktops, tablets, and mobile devices.</p>
+          <div class="chips">
+            <span class="chip">HTML5</span>
+            <span class="chip">CSS3</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">React Basics</span>
+          </div>
+        </article>
+
+        <article class="card skill-card">
+          <div class="top">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6"/><path d="M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg>
+            </span>
+            <span class="tag">Backend</span>
+          </div>
+          <h3>Backend Development</h3>
+          <p>Creating the logic behind websites, handling data, and connecting applications to databases and APIs.</p>
+          <div class="chips">
+            <span class="chip">Node.js</span>
+            <span class="chip">Python</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Database Integration</span>
+          </div>
+        </article>
+
+        <article class="card skill-card">
+          <div class="top">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v12H4z"/><path d="M8 20h8M12 16v4"/><path d="M8 9l2 2-2 2M13 13h3"/></svg>
+            </span>
+            <span class="tag">Design</span>
+          </div>
+          <h3>UI/UX and Responsive Design</h3>
+          <p>Designing clear layouts, intuitive navigation, and consistent experiences that help visitors find what they need.</p>
+          <div class="chips">
+            <span class="chip">Figma</span>
+            <span class="chip">Responsive</span>
+            <span class="chip">Accessibility</span>
+            <span class="chip">Wireframing</span>
+          </div>
+        </article>
+
+        <article class="card skill-card">
+          <div class="top">
+            <span class="icon-box">
+              <svg viewBox="0 0 24 24"><path d="M14 7l3-3 3 3-3 3M10 17l-3 3-3-3 3-3"/><path d="M7 14l10-10"/></svg>
+            </span>
+            <span class="tag">Delivery</span>
+          </div>
+          <h3>Tools and Deployment</h3>
+          <p>Managing code, testing features, fixing issues, and publishing websites for real-world use.</p>
+          <div class="chips">
+            <span class="chip">Git</span>
+            <span class="chip">Vercel</span>
+            <span class="chip">Docker</span>
+            <span class="chip">CI/CD Pipelines</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" style="background:#0d1220;">
+    <div class="wrap section-inner">
+      <div class="section-header">
+        <span class="eyebrow">Projects</span>
+        <h2>A Few Things I've Built.</h2>
+        <p>Every project is an opportunity to solve a problem, explore an idea, and create something useful. Here are a few projects that demonstrate my approach to development and problem-solving.</p>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <article class="card project">
+          <div class="mock m1">
+            <div class="mock-bar"><span>nova-business.site</span><span class="dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-block hi" style="width:45%"></div>
+              <div class="mock-block" style="width:80%"></div>
+              <div class="mock-row"><div></div><div></div><div></div></div>
+            </div>
+          </div>
+          <span class="label">Client Work</span>
+          <h3>Business Growth Website</h3>
+          <p class="desc">A professional website concept designed to help a business showcase its services, build credibility, and generate customer enquiries.</p>
+          <ul class="check features">
+            <li>Service and pricing pages</li>
+            <li>Lead capture forms</li>
+            <li>Mobile-first responsive layout</li>
+            <li>SEO-ready page structure</li>
+          </ul>
+          <div class="foot">
+            <div class="tags">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">JavaScript</span>
+            </div>
+            <div class="links">
+              <a class="text-link" href="#">Live Preview ↗</a>
+              <a class="text-link" href="#">Source Code ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card project">
+          <div class="mock m2">
+            <div class="mock-bar"><span>college-assist.app</span><span class="dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-block" style="width:60%"></div>
+              <div class="mock-block hi" style="width:35%;margin-left:auto"></div>
+              <div class="mock-block" style="width:70%"></div>
+            </div>
+          </div>
+          <span class="label">AI Project</span>
+          <h3>AI-Powered College Enquiry Chatbot</h3>
+          <p class="desc">A chatbot application designed to answer common college-related questions and help students access information more conveniently.</p>
+          <ul class="check features">
+            <li>Natural language question answering</li>
+            <li>Instant access to campus information</li>
+            <li>Simple chat interface for students</li>
+          </ul>
+          <div class="foot">
+            <div class="tags">
+              <span class="chip">Python</span>
+              <span class="chip">NLP</span>
+              <span class="chip">Chatbot</span>
+              <span class="chip">API</span>
+            </div>
+            <div class="links">
+              <a class="text-link" href="#">Live Demo ↗</a>
+              <a class="text-link" href="#">Source Code ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card project">
+          <div class="mock m3">
+            <div class="mock-bar"><span>portfolio.dev</span><span class="dot"></span></div>
+            <div class="mock-body">
+              <div class="mock-block hi" style="width:55%"></div>
+              <div class="mock-chart">
+                <svg viewBox="0 0 100 56" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline fill="none" stroke="#4fdbc8" stroke-width="1.5" points="0,44 20,36 40,40 60,22 80,26 100,10"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <span class="label">Personal Brand</span>
+          <h3>Developer Portfolio Website</h3>
+          <p class="desc">A personal website that presents skills, projects, and professional experience in one place, making it easier for clients and recruiters to understand my work.</p>
+          <ul class="check features">
+            <li>Skills and project showcase</li>
+            <li>Experience and certifications</li>
+            <li>Direct contact for clients and recruiters</li>
+          </ul>
+          <div class="foot">
+            <div class="tags">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">Responsive</span>
+            </div>
+            <div class="links">
+              <a class="text-link" href="#">Live Preview ↗</a>
+              <a class="text-link" href="#">Source Code ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="cta-banner">
+        <div>
+          <h4>Want a Website Like This for Your Business?</h4>
+          <p>Share your goals and I'll suggest the best approach for your project.</p>
+        </div>
+        <a class="btn btn-primary" href="#contact">Start Your Project <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CERTIFICATIONS ============ -->
+  <section id="learning">
+    <div class="wrap section-inner">
+      <div class="section-header">
+        <span class="eyebrow">Learning</span>
+        <h2>Learning Today. Building Better Tomorrow.</h2>
+        <p>I believe strong development skills come from both structured learning and practical experience. I continuously work on improving my technical knowledge and applying what I learn to real projects.</p>
+      </div>
+
+      <div class="milestones">
+        <article class="card milestone">
+          <div class="top">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M7 12v4c0 1.5 2.2 3 5 3s5-1.5 5-3v-4"/></svg></span>
+          </div>
+          <h3>Web Development Specialization</h3>
+          <p class="sub">Full-Stack Foundations</p>
+          <div class="foot">
+            <span>Completed</span>
+            <a class="text-link" href="#">View Credential ↗</a>
+          </div>
+        </article>
+
+        <article class="card milestone">
+          <div class="top">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/></svg></span>
+          </div>
+          <h3>Hackathon Presentation</h3>
+          <p class="sub">Technical Project Showcase</p>
+          <div class="foot">
+            <span>Presented</span>
+            <a class="text-link" href="#">View Project ↗</a>
+          </div>
+        </article>
+
+        <article class="card milestone">
+          <div class="top">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/><rect x="6" y="6" width="12" height="12" rx="2"/></svg></span>
+          </div>
+          <h3>Python for AI &amp; NLP</h3>
+          <p class="sub">Applied Intelligence Track</p>
+          <div class="foot">
+            <span>Completed</span>
+            <a class="text-link" href="#">View Credential ↗</a>
+          </div>
+        </article>
+
+        <article class="card milestone">
+          <div class="top">
+            <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M10 2v7.5L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9.5V2"/><path d="M8.5 2h7"/></svg></span>
+          </div>
+          <h3>Practical Code &amp; Solutions</h3>
+          <p class="sub">Problem Solving Certification</p>
+          <div class="foot">
+            <span>Certified</span>
+            <a class="text-link" href="#">View Credential ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIMELINE ============ -->
+  <section id="journey" style="background:#0d1220;">
+    <div class="wrap section-inner">
+      <div class="section-header">
+        <span class="eyebrow">My Journey</span>
+        <h2>Learning, Building, and Growing.</h2>
+        <p>My journey in technology is built around continuous learning, practical problem-solving, and turning technical knowledge into useful digital solutions.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="t-entry">
+          <div class="t-head">
+            <div>
+              <div class="t-date">Foundation Phase</div>
+              <h3>Foundations of Computing</h3>
+            </div>
+            <span class="badge">Learning</span>
+          </div>
+          <p>Developed a foundation in technical concepts, analytical thinking, and problem-solving.</p>
+        </div>
+
+        <div class="t-entry">
+          <div class="t-head">
+            <div>
+              <div class="t-date">Applied Practice</div>
+              <h3>Hands-On Development</h3>
+            </div>
+            <span class="badge">2024</span>
+          </div>
+          <p>Applied my skills to build websites and applications, practise responsive design, troubleshoot technical issues, and improve my development workflow.</p>
+        </div>
+
+        <div class="t-entry">
+          <div class="t-head">
+            <div>
+              <div class="t-date">Growing Skills</div>
+              <h3>Exploring New Tools &amp; Business Impact</h3>
+            </div>
+            <span class="badge">Now</span>
+          </div>
+          <p>Exploring new tools, improving coding practices, and developing a better understanding of how technology can solve business problems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OPEN TO WORK ============ -->
+  <section id="open">
+    <div class="wrap section-inner">
+      <div class="highlight">
+        <div class="glow glow-a"></div>
+        <div class="glow glow-b"></div>
+        <div class="highlight-inner">
+          <span class="eyebrow">Open to Opportunities</span>
+          <h2>Looking for a Developer Who Is Ready to Make an Impact?</h2>
+          <p>I'm eager to contribute my technical skills, problem-solving mindset, and willingness to learn to a team that values quality work and continuous improvement. I'm interested in opportunities where I can build useful digital solutions, collaborate with experienced professionals, and continue growing as a developer. If you think my skills and projects could be a good fit for your team, I'd welcome the opportunity to connect.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#contact">Send an Email <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-ghost" href="#">View Resume <span aria-hidden="true">↗</span></a>
+          </div>
+          <div class="note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4fdbc8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>Available for freelance, collaboration, and full-time roles</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" style="background:#0d1220;">
+    <div class="wrap section-inner">
+      <div class="contact-grid">
+
+        <div class="contact-left">
+          <span class="eyebrow">Get In Touch</span>
+          <h2>Have an Idea? Let's Make It Happen.</h2>
+          <p>Whether you need a website for a new business, want to improve your existing website, or have an idea you're ready to bring online, I'd love to hear about it. Tell me a little about your project, your goals, and what you're looking to achieve. I'll be happy to discuss how we can work together.</p>
+
+          <div class="channels">
+            <a class="channel" href="mailto:alex@company.com">
+              <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+              <div class="meta"><small>Email</small><span>alex@company.com</span></div>
+              <span class="arrow">↗</span>
+            </a>
+            <a class="channel" href="#">
+              <span class="icon-box"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></span>
+              <div class="meta"><small>LinkedIn</small><span>linkedin.com/in/yourname</span></div>
+              <span class="arrow">↗</span>
+            </a>
+            <a class="channel" href="#">
+              <span class="icon-box"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2m12 4v-3.5a3 3 0 0 0-.8-2.3c2.7-.3 5.5-1.3 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1-.3-3.3 1.3a11.5 11.5 0 0 0-6 0C6.6 2.4 5.6 2.7 5.6 2.7a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9c0 4.7 2.8 5.7 5.5 6a3 3 0 0 0-.8 2.3V21"/></svg></span>
+              <div class="meta"><small>GitHub</small><span>github.com/yourusername</span></div>
+              <span class="arrow">↗</span>
+            </a>
+          </div>
+
+          <div class="reassure">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4fdbc8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-top:2px;flex-shrink:0;"><path d="M12 8v4l2 2"/><circle cx="12" cy="12" r="9"/></svg>
+            <span>I usually respond within one business day, so you won't be left waiting.</span>
+          </div>
+        </div>
+
+        <!-- Contact form: name, email, phone only -->
+        <div class="form-card">
+          <h3>Start a Conversation</h3>
+          <p class="form-sub">Fill in your details and I'll get back to you.</p>
+
+          <form id="contact-form" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Full name <span class="req">*</span></label>
+                <input id="name" name="name" type="text" placeholder="Alex Mercer" autocomplete="name" required />
+              </div>
+              <div class="field">
+                <label for="email">Email address <span class="req">*</span></label>
+                <input id="email" name="email" type="email" placeholder="alex@company.com" autocomplete="email" required />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="+1 555 000 0000" autocomplete="tel" />
+            </div>
+
+            <div class="form-foot">
+              <button class="btn btn-primary" id="submit-btn" type="submit"><span>Send Message</span> <span aria-hidden="true">↗</span></button>
+              <p class="privacy">Your details are only used to reply to your enquiry.</p>
+              <div class="status" id="form-status" role="status" aria-live="polite"></div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Web Developer Portfolio</div>
+  </footer>
+
+  <script>
+    // Deployed Google Apps Script web app URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfje7N3FlKtWIulwqx0At58upyz0-jiAAaMnuskN3PDw8eSk-DlHwcEBbY73etaNmmPg/exec";
+
+    const form = document.getElementById("contact-form");
+    const submitBtn = document.getElementById("submit-btn");
+    const statusEl = document.getElementById("form-status");
+    const yearEl = document.getElementById("year");
+
+    yearEl.textContent = new Date().getFullYear();
+
+    function setBusy(isBusy) {
+      submitBtn.disabled = isBusy;
+      submitBtn.querySelector("span").textContent = isBusy ? "Sending..." : "Send Message";
+    }
+
+    function showStatus(message, type) {
+      statusEl.textContent = message;
+      statusEl.className = "status show " + type;
+    }
+
+    function showSuccess() {
+      showStatus("Thanks! Your details have been received. I'll be in touch soon.", "success");
+      form.reset();
+      setBusy(false);
+    }
+
+    function showError() {
+      showStatus("Something went wrong. Please try again.", "error");
+      setBusy(false);
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+
+      if (!name || !email || !form.checkValidity()) {
+        showStatus("Please enter your name and a valid email address.", "error");
+        return;
+      }
+
+      setBusy(true);
+      statusEl.className = "status";
+
+      const url = SCRIPT_URL + "?" + new URLSearchParams({ name, email, phone });
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(() => showSuccess())
+        .catch(() => showError());
+    });
+  </script>
+</body>
+</html>
